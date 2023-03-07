@@ -1,6 +1,6 @@
 
 import { initializeApp } from 'firebase/app'
-import { query , collection,getDocs,getFirestore, where,setDoc, addDoc} from 'firebase/firestore'
+import { query , collection,getDocs,getFirestore, where,setDoc, addDoc,updateDoc, doc} from 'firebase/firestore'
 import dotenv from 'dotenv'
 
 dotenv.config()
@@ -34,10 +34,16 @@ useQueryData.forEach((doc)=>{
 //     console.log(`Added data Successfully\n${data}`)
 // })
 
+
 //Address Query
 const addRef = collection(db,"Addresses")
 const addQuery = query(addRef,where("name","==","abcd"))
 
+//update Query
+const updateRef = doc(db,"Addresses","SZ1DK4pNGUiAUJ80D3iX")
+updateDoc(updateRef,{city : "Mysore"}).then((data)=>{
+    console.log('Updated Data Successfully')
+})
 getDocs(addQuery).then((queryData)=>{
 queryData.forEach((doc)=>{
     console.log(doc.data())
