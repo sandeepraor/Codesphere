@@ -1,9 +1,11 @@
 
 import { initializeApp } from 'firebase/app'
 import { query , collection,getDocs,getFirestore, where,setDoc, addDoc} from 'firebase/firestore'
+import dotenv from 'dotenv'
 
+dotenv.config()
 const firebaseConfig = {
-    apiKey: "AIzaSyDHJii2BVaR1v3-JtD1ebLzc4fabLpfeHE",
+    apiKey: process.env.apiKey,
     authDomain: "codesphere-4f786.firebaseapp.com",
     projectId: "codesphere-4f786",
     storageBucket: "codesphere-4f786.appspot.com",
@@ -28,9 +30,9 @@ const useQueryData = await getDocs(userQuery)
 useQueryData.forEach((doc)=>{
     console.log(doc.data())
 })
-addDoc(userRef,{name : "hello",email : "hello@gmail.com",phone : ["8934353489"]}).then((data)=>{
-    console.log(`Added data Successfully\n${data}`)
-})
+// addDoc(userRef,{name : "hello",email : "hello@gmail.com",phone : ["8934353489"]}).then((data)=>{
+//     console.log(`Added data Successfully\n${data}`)
+// })
 
 //Address Query
 const addRef = collection(db,"Addresses")
